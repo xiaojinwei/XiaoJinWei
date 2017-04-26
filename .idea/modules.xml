@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/XiaoJinWei.iml" filepath="$PROJECT_DIR$/XiaoJinWei.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/recyclerview_lib/recyclerview_lib.iml" filepath="$PROJECT_DIR$/recyclerview_lib/recyclerview_lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/statuslayout/statuslayout.iml" filepath="$PROJECT_DIR$/statuslayout/statuslayout.iml" />
     </modules>
   </component>
 </project>

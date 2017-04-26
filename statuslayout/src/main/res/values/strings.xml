@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">StatusLayout</string>
+    <string name="status_loading">加载中...</string>
+</resources>

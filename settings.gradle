@@ -1,1 +1,1 @@
-include ':app', ':recyclerview_lib'
+include ':app', ':recyclerview_lib', ':statuslayout'

@@ -43,6 +43,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
         mUnbinder = ButterKnife.bind(this);
         initInject();
         if (mPresenter != null) {
+            mPresenter.onCreate();
             mPresenter.attachView(this);
         }
         init();

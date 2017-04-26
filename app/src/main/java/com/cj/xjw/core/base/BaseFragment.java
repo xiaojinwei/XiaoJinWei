@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cj.statuslayout.OnShowHideViewListener;
+import com.cj.statuslayout.StatusLayoutManager;
 import com.cj.xjw.base.App;
 import com.cj.xjw.core.di.component.DaggerFragmentComponent;
 import com.cj.xjw.core.di.component.FragmentComponent;
@@ -31,19 +33,44 @@ public abstract class BaseFragment<T extends BasePresenter> extends SupportFragm
     protected  View mView;
 
     protected boolean mIsInited ;
+    protected StatusLayoutManager mStatusLayoutManager;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(getLayoutId(),container,false);
+        statusLayout();
+        //mView = inflater.inflate(getLayoutId(),container,false);
+        mView = mStatusLayoutManager.getRootLayout();
         initInject();
         return mView;
+    }
+
+    private void statusLayout() {
+        mStatusLayoutManager = new StatusLayoutManager.Builder(_mActivity)
+                .contentView(getLayoutId())
+                .errorView(com.cj.statuslayout.R.layout.status_layout_error)
+                .emptyDataView(com.cj.statuslayout.R.layout.status_layout_empty)
+                .loadingView(com.cj.statuslayout.R.layout.status_layout_loading)
+                .netWorkErrorView(com.cj.statuslayout.R.layout.status_layout_network)
+                .onShowHideViewListener(new OnShowHideViewListener() {
+                    @Override
+                    public void onShowView(View view, int id) {
+
+                    }
+
+                    @Override
+                    public void onHideView(View view, int id) {
+
+                    }
+                }).build();
+        mStatusLayoutManager.showContent();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (mPresenter != null) {
+            mPresenter.onCreate();
             mPresenter.attachView(this);
         }
         mUnbinder = ButterKnife.bind(this,view);
@@ -93,6 +120,8 @@ public abstract class BaseFragment<T extends BasePresenter> extends SupportFragm
             mUnbinder.unbind();
         }
     }
+
+
 
     protected abstract void init();
 

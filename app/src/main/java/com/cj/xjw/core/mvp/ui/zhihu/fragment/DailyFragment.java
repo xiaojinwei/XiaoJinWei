@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.cj.chenj.recyclerview_lib.adapter.MultiItemTypeSupport;
+import com.cj.statuslayout.StatusLayoutManager;
 import com.cj.xjw.R;
 import com.cj.xjw.core.base.BaseFragment;
 import com.cj.xjw.core.mvp.model.bean.DailyListBean;
@@ -50,6 +51,7 @@ public class DailyFragment extends BaseFragment<DailyPresenter> implements Daily
         mRecycler.setAdapter(mDailyAdapter);
     }
 
+
     @Override
     protected void initInject() {
         getFragmentComponent().inject(this);
@@ -62,12 +64,12 @@ public class DailyFragment extends BaseFragment<DailyPresenter> implements Daily
 
     @Override
     public void showProgress() {
-
+        mStatusLayoutManager.showLoading();
     }
 
     @Override
     public void hideProgress() {
-
+        mStatusLayoutManager.showContent();
     }
 
     @Override

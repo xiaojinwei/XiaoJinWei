@@ -53,5 +53,5 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.2.1'
     compile 'com.jakewharton:butterknife:8.2.1'
     compile project(':recyclerview_lib')
-
+    compile project(':statuslayout')
 }

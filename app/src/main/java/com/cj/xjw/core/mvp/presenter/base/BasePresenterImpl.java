@@ -39,6 +39,7 @@ public class BasePresenterImpl<T extends BaseView> implements BasePresenter<T> {
     @Override
     public void attachView(@NonNull T view) {
         this.mView = view;
+        this.mView.showProgress();
     }
 
     @Override

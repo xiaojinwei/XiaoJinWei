@@ -31,6 +31,7 @@ public class DailyPresenter extends BasePresenterImpl<DailyContract.View> implem
                 .subscribeWith(new ResourceSubscriber<DailyListBean>() {
                     @Override
                     public void onNext(DailyListBean dailyListBean) {
+                        mView.hideProgress();
                         mView.setContentData(dailyListBean);
                     }
 
