@@ -31,7 +31,7 @@ public class Util {
         }
     }
 
-    private static int getScreenWidth() {
+    public static int getScreenWidth() {
         return App.getApplication().getResources().getDisplayMetrics().widthPixels;
     }
 

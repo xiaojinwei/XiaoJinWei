@@ -13,6 +13,7 @@
     <color name="colorText">#2C2C2C</color>
     <color name="colorCard">#FFFFFF</color>
     <color name="splash_bg">#efefef</color>
+    <color name="bottom_shadow">#6e000000</color>
 
 
 </resources>
