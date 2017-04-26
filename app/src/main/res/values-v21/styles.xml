@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        //加速启动
+        <item name="android:windowIsTranslucent">true</item>
+        //沉浸状态栏
+        <!--透明状态栏-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <!--透明导航栏-->
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!--使状态栏，导航栏可绘制-->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
+        //ActionBarDrawerToggle设置颜色
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+</resources>
