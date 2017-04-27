@@ -15,6 +15,7 @@ import com.cj.xjw.core.mvp.model.bean.DailyListBean;
 import com.cj.xjw.core.mvp.presenter.DailyPresenter;
 import com.cj.xjw.core.mvp.presenter.contract.DailyContract;
 import com.cj.xjw.core.mvp.ui.zhihu.adapter.DailyAdapter;
+import com.cj.xjw.core.utils.SnackbarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import okhttp3.Cookie;
 
 /**
  * Created by chenj on 2017/4/24.
@@ -74,13 +76,12 @@ public class DailyFragment extends BaseFragment<DailyPresenter> implements Daily
 
     @Override
     public void showMsg(String msg) {
-
+        SnackbarUtil.show(mRecycler,msg);
     }
 
 
     @Override
     public void setContentData(DailyListBean contentData) {
-        Log.d("DAILY",contentData.toString());
         if (mDailyAdapter != null) {
             mDailyAdapter.setDailyListBean(contentData);
             mDailyAdapter.setDatas(contentData.getStories());

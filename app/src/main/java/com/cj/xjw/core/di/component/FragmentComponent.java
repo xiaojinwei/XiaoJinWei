@@ -6,6 +6,7 @@ import com.cj.xjw.core.di.module.FragmentModule;
 import com.cj.xjw.core.di.scope.FragmentScope;
 import com.cj.xjw.core.mvp.ui.main.fragment.NewsListFragment;
 import com.cj.xjw.core.mvp.ui.zhihu.fragment.DailyFragment;
+import com.cj.xjw.core.mvp.ui.zhihu.fragment.HotFragment;
 import com.cj.xjw.core.mvp.ui.zhihu.fragment.SectionFragment;
 import com.cj.xjw.core.mvp.ui.zhihu.fragment.ThemeFragment;
 import com.cj.xjw.core.mvp.ui.zhihu.fragment.ZhiHuFragment;
@@ -25,4 +26,5 @@ public interface FragmentComponent {
     void inject(DailyFragment fragment);
     void inject(ThemeFragment fragment);
     void inject(SectionFragment fragment);
+    void inject(HotFragment fragment);
 }

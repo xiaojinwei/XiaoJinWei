@@ -15,5 +15,7 @@
     <color name="splash_bg">#efefef</color>
     <color name="bottom_shadow">#6e000000</color>
 
+    <color name="news_unread">#000000</color>
+    <color name="news_read">#898989</color>
 
 </resources>
