@@ -2,6 +2,7 @@ package com.cj.xjw.core.mvp.model.http;
 
 import com.cj.xjw.core.mvp.model.bean.DailyListBean;
 import com.cj.xjw.core.mvp.model.bean.NewsSummary;
+import com.cj.xjw.core.mvp.model.bean.SectionListBean;
 import com.cj.xjw.core.mvp.model.bean.ThemeListBean;
 import com.cj.xjw.core.mvp.model.http.api.MyApi;
 import com.cj.xjw.core.mvp.model.http.api.ZhiHuApi;
@@ -37,5 +38,9 @@ public class RetrofitHelper {
 
     public Flowable<ThemeListBean> getThemeList() {
         return mZhuHuApi.getThemeList();
+    }
+
+    public Flowable<SectionListBean> getSectionList() {
+        return mZhuHuApi.getSectionList();
     }
 }
