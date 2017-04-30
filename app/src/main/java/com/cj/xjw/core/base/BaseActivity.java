@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.cj.statuslayout.OnShowHideViewListener;
+import com.cj.statuslayout.StatusLayoutManager;
 import com.cj.xjw.R;
 import com.cj.xjw.base.App;
 import com.cj.xjw.core.di.component.ActivityComponent;
@@ -34,11 +36,15 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
 
     private Unbinder mUnbinder;
 
+    protected StatusLayoutManager mStatusLayoutManager;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
+        statusLayout();
+        setContentView(mStatusLayoutManager.getRootLayout());//
         mContext = this;
         mUnbinder = ButterKnife.bind(this);
         initInject();
@@ -48,6 +54,27 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
         }
         init();
 
+    }
+
+    private void statusLayout() {
+        mStatusLayoutManager = new StatusLayoutManager.Builder(this)
+                .contentView(getLayoutId())
+                .errorView(com.cj.statuslayout.R.layout.status_layout_error)
+                .emptyDataView(com.cj.statuslayout.R.layout.status_layout_empty)
+                .loadingView(com.cj.statuslayout.R.layout.status_layout_loading)
+                .netWorkErrorView(com.cj.statuslayout.R.layout.status_layout_network)
+                .onShowHideViewListener(new OnShowHideViewListener() {
+                    @Override
+                    public void onShowView(View view, int id) {
+
+                    }
+
+                    @Override
+                    public void onHideView(View view, int id) {
+
+                    }
+                }).build();
+        mStatusLayoutManager.showContent();
     }
 
     protected void setToolbar(Toolbar toolbar, String title) {

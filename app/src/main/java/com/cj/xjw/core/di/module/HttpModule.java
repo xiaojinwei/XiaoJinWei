@@ -3,6 +3,8 @@ package com.cj.xjw.core.di.module;
 import com.cj.xjw.BuildConfig;
 import com.cj.xjw.base.ApiConstans;
 import com.cj.xjw.base.Constants;
+import com.cj.xjw.core.di.qualifier.MyKaKuApi;
+import com.cj.xjw.core.di.qualifier.MyKaKuUrl;
 import com.cj.xjw.core.di.qualifier.MyUrl;
 import com.cj.xjw.core.di.qualifier.ZhiHuUrl;
 import com.cj.xjw.core.mvp.model.http.api.MyApi;
@@ -107,6 +109,13 @@ public class HttpModule {
         return createRetrofit(builder,client, ApiConstans.MY_BASE_URL);
     }
 
+    @MyKaKuUrl
+    @Provides
+    @Singleton
+    Retrofit provideMyKaKuRetrofit(Retrofit.Builder builder, OkHttpClient client) {
+        return createRetrofit(builder,client,ApiConstans.MY_PIC_BASE_URL);
+    }
+
     @ZhiHuUrl
     @Provides
     @Singleton
@@ -124,9 +133,17 @@ public class HttpModule {
                 .build();
     }
 
+    @com.cj.xjw.core.di.qualifier.MyApi
     @Singleton
     @Provides
     MyApi provideMyApi(@MyUrl Retrofit retrofit) {
+        return retrofit.create(MyApi.class);
+    }
+
+    @MyKaKuApi
+    @Singleton
+    @Provides
+    MyApi provideKaKuApi(@MyKaKuUrl Retrofit retrofit) {
         return retrofit.create(MyApi.class);
     }
 
@@ -135,6 +152,7 @@ public class HttpModule {
     ZhiHuApi provideZhiHuApi(@ZhiHuUrl Retrofit retrofit) {
         return retrofit.create(ZhiHuApi.class);
     }
+
 
 
 }

@@ -7,6 +7,7 @@ package com.cj.xjw.base;
 public class ApiConstans {
 
     public static final String MY_BASE_URL = "http://c.m.163.com/";//网易新闻
+    public static final String MY_PIC_BASE_URL = "http://kaku.com/";//网易新闻
     public static final String ZhiHu_BASE_URL = "http://news-at.zhihu.com/api/4/";//知乎
 
 

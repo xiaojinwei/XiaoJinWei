@@ -135,7 +135,8 @@ public abstract class CommonAdapter<T> extends RecyclerView.Adapter<ViewHolder> 
     }
 
     public void setDatas(List<T> datas) {
-        mDatas = datas;
+        mDatas.clear();
+        mDatas.addAll(datas);
     }
 
     public void addMore(List<T> data) {

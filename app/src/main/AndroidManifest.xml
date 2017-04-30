@@ -21,6 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".core.mvp.ui.main.activity.NewsDetailActivity"
+            android:theme="@style/AppTheme.NoTrans"/>
     </application>
 
 </manifest>

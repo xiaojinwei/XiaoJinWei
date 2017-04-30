@@ -1,6 +1,8 @@
 package com.cj.xjw.base;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.cj.xjw.core.component.InitializeService;
 import com.cj.xjw.core.di.component.AppComponent;
@@ -40,5 +42,17 @@ public class App extends Application {
 
     public AppComponent getAppComponent() {
         return mAppComponent;
+    }
+
+
+    public static boolean isHavePhoto() {
+        return
+        getSharedPreferences().getBoolean(Constants.SHOW_NEWS_PHOTO, true);
+    }
+
+    public static SharedPreferences getSharedPreferences() {
+        return App.getApplication()
+                .getSharedPreferences(Constants.SHARES_COLOURFUL_NEWS,
+                        Context.MODE_PRIVATE);
     }
 }

@@ -1,9 +1,15 @@
 package com.cj.xjw.core.mvp.ui.main.fragment;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +19,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.cj.chenj.recyclerview_lib.adapter.CommonAdapter;
 import com.cj.chenj.recyclerview_lib.adapter.LoadMoreWrapper;
 import com.cj.chenj.recyclerview_lib.adapter.MultiItemTypeSupport;
 import com.cj.xjw.R;
@@ -21,10 +29,12 @@ import com.cj.xjw.base.Constants;
 import com.cj.xjw.common.LoadNewsType;
 import com.cj.xjw.core.base.BaseFragment;
 import com.cj.xjw.core.component.RxBus;
+import com.cj.xjw.core.di.component.ActivityComponent;
 import com.cj.xjw.core.mvp.model.bean.NewsSummary;
 import com.cj.xjw.core.mvp.model.event.TopEvent;
 import com.cj.xjw.core.mvp.presenter.NewsListPresenter;
 import com.cj.xjw.core.mvp.presenter.contract.NewsListContract;
+import com.cj.xjw.core.mvp.ui.main.activity.NewsDetailActivity;
 import com.cj.xjw.core.mvp.ui.main.adapter.NewsListAdapter;
 import com.cj.xjw.core.utils.SnackbarUtil;
 
@@ -43,7 +53,7 @@ import io.reactivex.functions.Consumer;
  * Created by chenj on 2017/4/22.
  */
 
-public class NewsListFragment extends BaseFragment<NewsListPresenter> implements NewsListContract.View {
+public class NewsListFragment extends BaseFragment<NewsListPresenter> implements NewsListContract.View, CommonAdapter.OnItemClickListener {
 
     String mType;
     String mId;
@@ -58,6 +68,9 @@ public class NewsListFragment extends BaseFragment<NewsListPresenter> implements
     @Inject
     Activity mActivity;
     //private LoadMoreWrapper mLoadMoreWrapper;
+
+    @Inject
+    Context mContext;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,6 +113,7 @@ public class NewsListFragment extends BaseFragment<NewsListPresenter> implements
 //                    mPresenter.loadMore();
 //                }
 //            });
+            mNewsListAdapter.setOnItemClickListener(this);
         }
         setOnListener();
 
@@ -210,4 +224,40 @@ public class NewsListFragment extends BaseFragment<NewsListPresenter> implements
         }
     };
 
+    @Override
+    public void onItemClick(RecyclerView.Adapter<?> parent, RecyclerView.ViewHolder viewHolder, View view, int position, int viewType) {
+        if (viewType == NewsListAdapter.TYPE_ITEM) {
+            goToNewsDetailActivity(view,position);
+        }else{
+
+        }
+    }
+
+    private void goToNewsDetailActivity(View view, int position) {
+        Intent intent = getIntent(position);
+        startActivity(view,intent);
+    }
+
+    private void startActivity(View view, Intent intent) {
+        ImageView newsSummaryPhotoIv = (ImageView) view.findViewById(R.id.news_summary_photo_iv);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ActivityOptions options = ActivityOptions
+                    .makeSceneTransitionAnimation(mActivity, newsSummaryPhotoIv, Constants.TRANSITION_ANIMATION_NEWS_PHOTOS);
+            startActivity(intent,options.toBundle());
+        }else{
+            ActivityOptionsCompat compat = ActivityOptionsCompat
+                    .makeScaleUpAnimation(view,view.getWidth() / 2,view.getHeight() / 2,0,0);
+            ActivityCompat.startActivity(mActivity,intent,compat.toBundle());
+        }
+    }
+
+
+    private Intent getIntent(int position) {
+        NewsSummary newsSummary = mData.get(position);
+        Intent intent = new Intent(mActivity, NewsDetailActivity.class);
+        intent.putExtra(Constants.NEWS_POST_ID, newsSummary.getPostid());
+        intent.putExtra(Constants.NEWS_IMG_RES,newsSummary.getImgsrc());
+
+        return intent;
+    }
 }
