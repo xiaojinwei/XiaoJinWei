@@ -51,6 +51,17 @@ public class DailyFragment extends BaseFragment<DailyPresenter> implements Daily
         mRecycler.setHasFixedSize(true);
         mRecycler.setItemAnimator(new DefaultItemAnimator());
         mRecycler.setAdapter(mDailyAdapter);
+
+        initEvent();
+    }
+
+    private void initEvent() {
+        mSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPresenter.getContentData();
+            }
+        });
     }
 
 
@@ -82,10 +93,14 @@ public class DailyFragment extends BaseFragment<DailyPresenter> implements Daily
 
     @Override
     public void setContentData(DailyListBean contentData) {
+        if (mSwipe != null && mSwipe.isRefreshing()) {
+            mSwipe.setRefreshing(false);
+        }
         if (mDailyAdapter != null) {
-            mDailyAdapter.setDailyListBean(contentData);
-            mDailyAdapter.setDatas(contentData.getStories());
-            mDailyAdapter.notifyDataSetChanged();
+            //mDailyAdapter.setDailyListBean(contentData);
+            //mDailyAdapter.setDatas(contentData.getStories());
+            //mDailyAdapter.notifyDataSetChanged();
+            mDailyAdapter.refreshData(contentData);
         }
     }
 

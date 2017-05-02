@@ -1,6 +1,7 @@
 package com.cj.xjw.core.mvp.ui.zhihu.adapter;
 
 import android.content.Context;
+import android.support.v7.util.DiffUtil;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -9,6 +10,7 @@ import com.cj.chenj.recyclerview_lib.adapter.ViewHolder;
 import com.cj.xjw.R;
 import com.cj.xjw.core.component.ImageLoader;
 import com.cj.xjw.core.mvp.model.bean.ThemeListBean;
+import com.cj.xjw.core.mvp.ui.zhihu.diff.ThemeDiff;
 import com.cj.xjw.core.utils.DimenUtil;
 import com.cj.xjw.core.utils.Util;
 
@@ -34,5 +36,11 @@ public class ThemeAdapter extends CommonAdapter<ThemeListBean.OthersBean> {
         viewHolder.setText(R.id.theme_kind,item.getName());
 
         setItemAppearAnimation(viewHolder,position,R.anim.anim_bottom_in);
+    }
+
+    public void refreshData(List<ThemeListBean.OthersBean> list) {
+        DiffUtil.DiffResult  diffResult = DiffUtil.calculateDiff(new ThemeDiff(mDatas,list),true);
+        setDatas(list);
+        diffResult.dispatchUpdatesTo(this);
     }
 }

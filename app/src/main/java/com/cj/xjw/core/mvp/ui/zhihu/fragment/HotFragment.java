@@ -52,6 +52,18 @@ public class HotFragment extends BaseFragment<HotPresenter> implements HotContra
         mRecycler.setLayoutManager(new LinearLayoutManager(mActivity));
         mRecycler.setItemAnimator(new DefaultItemAnimator());
         mRecycler.setAdapter(mHotAdapter);
+
+        initEvent();
+
+    }
+
+    private void initEvent() {
+        mSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPresenter.getHotList();
+            }
+        });
     }
 
     @Override
@@ -81,8 +93,12 @@ public class HotFragment extends BaseFragment<HotPresenter> implements HotContra
 
     @Override
     public void setHotList(HotListBean hotListBean) {
+        if (mSwipe.isRefreshing()) {
+            mSwipe.setRefreshing(false);
+        }
         if (hotListBean != null && hotListBean.getRecent() != null) {
-            mHotAdapter.addMore(hotListBean.getRecent());
+            //mHotAdapter.addMore(hotListBean.getRecent());
+            mHotAdapter.refreshData(hotListBean.getRecent());
         }
     }
 }

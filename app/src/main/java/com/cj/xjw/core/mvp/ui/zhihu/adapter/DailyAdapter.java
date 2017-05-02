@@ -2,6 +2,7 @@ package com.cj.xjw.core.mvp.ui.zhihu.adapter;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
+import android.support.v7.util.DiffUtil;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -11,6 +12,7 @@ import com.cj.chenj.recyclerview_lib.adapter.ViewHolder;
 import com.cj.xjw.R;
 import com.cj.xjw.core.component.ImageLoader;
 import com.cj.xjw.core.mvp.model.bean.DailyListBean;
+import com.cj.xjw.core.mvp.ui.zhihu.diff.DailyDiff;
 
 import java.util.List;
 
@@ -59,4 +61,10 @@ public class DailyAdapter extends MultiItemCommonAdapter<DailyListBean.StoriesBe
     }
 
 
+    public void refreshData(DailyListBean newData) {
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DailyDiff(mDatas,newData.getStories()),true);
+        setDailyListBean(newData);
+        setDatas(newData.getStories());
+        diffResult.dispatchUpdatesTo(this);
+    }
 }

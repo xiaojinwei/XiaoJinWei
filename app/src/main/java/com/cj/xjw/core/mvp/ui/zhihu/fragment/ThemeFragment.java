@@ -49,6 +49,17 @@ public class ThemeFragment extends BaseFragment<ThemePresenter> implements Theme
         mRecycler.setHasFixedSize(true);
         mRecycler.setLayoutManager(new GridLayoutManager(mActivity,2));
         mRecycler.setAdapter(mThemeAdapter);
+
+        initEvent();
+    }
+
+    private void initEvent() {
+        mSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPresenter.getThemeList();
+            }
+        });
     }
 
     @Override
@@ -78,8 +89,12 @@ public class ThemeFragment extends BaseFragment<ThemePresenter> implements Theme
 
     @Override
     public void setThemeList(ThemeListBean themeList) {
+        if (mSwipe.isRefreshing()) {
+            mSwipe.setRefreshing(false);
+        }
         if (themeList != null && themeList.getOthers() != null) {
-            mThemeAdapter.addMore(themeList.getOthers());
+            //mThemeAdapter.addMore(themeList.getOthers());
+            mThemeAdapter.refreshData(themeList.getOthers());
         }
 
         Log.d("",themeList.toString());

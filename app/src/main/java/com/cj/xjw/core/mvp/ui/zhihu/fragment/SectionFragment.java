@@ -53,6 +53,17 @@ public class SectionFragment extends BaseFragment<SectionPresenter> implements S
         mRecycler.setItemAnimator(new DefaultItemAnimator());
         mRecycler.setAdapter(mSectionAdapter);
 
+        initEvent();
+
+    }
+
+    private void initEvent() {
+        mSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPresenter.getSectionList();
+            }
+        });
     }
 
     @Override
@@ -82,8 +93,12 @@ public class SectionFragment extends BaseFragment<SectionPresenter> implements S
 
     @Override
     public void setSectionList(SectionListBean sectionList) {
+        if (mSwipe.isRefreshing()) {
+            mSwipe.setRefreshing(false);
+        }
         if (sectionList != null && sectionList.getData() != null) {
-            mSectionAdapter.addMore(sectionList.getData());
+            //mSectionAdapter.addMore(sectionList.getData());
+            mSectionAdapter.refreshData(sectionList.getData());
         }
     }
 }
