@@ -44,7 +44,6 @@
     <style name="StartAppTheme" parent="AppTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@drawable/splash_bg</item>
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
 </resources>

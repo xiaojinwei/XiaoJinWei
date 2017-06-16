@@ -8,6 +8,7 @@ import com.cj.xjw.core.component.InitializeService;
 import com.cj.xjw.core.di.component.AppComponent;
 import com.cj.xjw.core.di.component.DaggerAppComponent;
 import com.cj.xjw.core.di.module.AppModule;
+import com.cj.xjw.core.di.module.HttpModule;
 
 /**
  * Created by chenj on 2017/4/17.
@@ -37,6 +38,7 @@ public class App extends Application {
     private void initAppComponent() {
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
+                .httpModule(new HttpModule())
                 .build();
     }
 

@@ -19,7 +19,7 @@ import dagger.Component;
 @Component(modules = {AppModule.class, HttpModule.class})
 public interface AppComponent {
 
-    //这几个像外提供类型对象的方法不能有参数
+    //这几个向外提供类型对象的方法不能有参数
 
     App getApplication(); //提供上下文
 

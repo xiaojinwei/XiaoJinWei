@@ -80,10 +80,8 @@ public abstract class BaseFragment<T extends BasePresenter> extends SupportFragm
                 init();
             }
         }else{
-            if (!isSupportVisible()) {
-                mIsInited = true;
-                init();
-            }
+            mIsInited = true;
+            init();
         }
     }
 
