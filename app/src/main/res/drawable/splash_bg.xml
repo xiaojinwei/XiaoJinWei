@@ -5,6 +5,6 @@
     <!-- 配置中的android:opacity=”opaque”参数是为了防止在启动的时候出现背景的闪烁。 -->
     <item android:drawable="@color/splash_bg"/>
     <item>
-        <bitmap android:src="@drawable/splash" android:gravity="center"/>
+        <bitmap android:src="@drawable/splash" android:gravity="fill"/>
     </item>
 </layer-list>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+
+    <color name="bottom_bg" >#373B3E</color>
+    <color name="status_bg" >#2D3134</color>
+    <color name="toolbar_bg" >#373B3E</color>
+    <color name="text_gray" >#FF74787B</color>
+    <color name="sure_visible" >#FF1CAA24</color>
+    <color name="sure_invisible" >#FF2B6631</color>
+</resources>

@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         //加速启动
-        <item name="android:windowIsTranslucent">true</item>
+       <!-- <item name="android:windowIsTranslucent">true</item>-->
         //沉浸状态栏
         <!--透明状态栏-->
         <item name="android:windowTranslucentStatus">true</item>

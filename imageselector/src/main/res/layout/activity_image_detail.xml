@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@color/status_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+        <com.cj.imageselector.widget.HackyViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <RelativeLayout
+            android:id="@+id/detail_bottom_container"
+            android:background="@color/bottom_bg"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+                <ImageView
+                    android:id="@+id/select_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="0dp"
+                    android:background="@null"
+                    android:clickable="false"
+                    android:focusableInTouchMode="false"
+                    android:focusable="false"
+                    android:paddingLeft="6dp"
+                    android:paddingBottom="6dp"
+                    android:paddingTop="3dp"
+                    android:paddingRight="3dp"
+                    android:src="@drawable/picture_unselected"
+                    />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/toolbar_rl"
+            android:background="@color/status_bg"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:titleTextColor="@android:color/white"
+            android:background="@color/toolbar_bg"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:theme="@style/ToolbarTheme"
+            app:layout_scrollFlags="enterAlways|scroll"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:elevation="0dp"
+            >
+        </android.support.v7.widget.Toolbar>
+        </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,23 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.cj.imageselector">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application android:allowBackup="true"
+                 android:label="@string/app_name"
+                 android:supportsRtl="true"
+    >
+
+        <activity android:name=".activity.ImageLoaderActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/ImageLoaderTheme"
+            />
+        <activity android:name=".activity.ImageDetailActivity"
+                  android:launchMode="singleTop"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/ImageLoaderTheme"
+            />
+
+    </application>
+
+</manifest>

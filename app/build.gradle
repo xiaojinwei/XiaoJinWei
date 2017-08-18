@@ -54,9 +54,9 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.2.1'
     compile project(':recyclerview_lib')
     compile project(':statuslayout')
-
     //YoYo
     compile 'com.android.support:support-compat:25.1.1'
     compile 'com.daimajia.easing:library:2.0@aar'
     compile 'com.daimajia.androidanimations:library:2.2@aar'
+    compile project(':imageselector')
 }
